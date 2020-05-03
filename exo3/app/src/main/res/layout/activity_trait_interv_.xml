@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.gestionInterv">
+
+    <Button
+        android:id="@+id/supp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/Nom"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="436dp"
+        android:backgroundTint="#2196F3"
+        android:text="Supprimer" />
+
+    <Button
+        android:id="@+id/Apliquer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/Nom"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="-6dp"
+        android:layout_marginTop="366dp"
+        android:backgroundTint="#2196F3"
+        android:text="Enregistrer" />
+
+    <EditText
+        android:id="@+id/editNom"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/spinner_nom"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="-217dp"
+        android:layout_toRightOf="@+id/Nom"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/spinner_nom_text"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/spinner_type"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@+id/spinner_nom" />
+
+    <TextView
+        android:id="@+id/spinner_type_text"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/addDate"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="150dp"
+        android:layout_toRightOf="@+id/spinner_type" />
+
+    <TextView
+        android:id="@+id/Nom"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/spinner_nom"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="-219dp"
+        android:text="ID"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@+id/addDate"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#2196F3"
+        android:text="Date" />
+
+    <EditText
+        android:id="@+id/InputDate"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/addDate"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="-6dp"
+        android:layout_toRightOf="@+id/addDate"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Date" />
+
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addDate"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="150dp" />
+
+    <Spinner
+        android:id="@+id/spinner_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_type"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp" />
+</RelativeLayout>
