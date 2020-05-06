@@ -35,24 +35,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        add_intervention = findViewById<Button>(R.id.add_intervention)
-        add_intervention.setOnClickListener{
-            startActivity(Intent(this , AjouterIntervention::class.java))
-        }
 
 
+/*Récupérer la liste des interventions*/
 
         listIntervention = getData("file" , "",this)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         recyclerView.adapter = adapter
+/*Ajouter interventions*/
+
+        add_intervention = findViewById<Button>(R.id.add_intervention)
+        add_intervention.setOnClickListener{
+            val intent = Intent(this, AjouterIntervention::class.java)
+            intent.putExtra("mod","ajout")
+            intent.putExtra("pos",0)
+            startActivity(intent)
+        }
 
 
-
-
-
-
+/*Recherche par date*/
         val datePicker = DatePicker(this)
 
         val button = Button(this)
@@ -66,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             date_linear_layout.visibility = View.GONE
             rechercherParDateBtn.text = datePickerValue
 
+            /*get data*/
             listIntervention = getData("file" , datePickerValue,this)
 
 
@@ -104,7 +108,6 @@ class MainActivity : AppCompatActivity() {
                 val jsonIntervention =json.getJSONObject(i)
                 if ( (datePickerValue == "") || (jsonIntervention["date"] == datePickerValue ))
                 {
-                    println("YYYYYYYYYYYYYYYYYYYYYYYYYYY")
                     listIntervention.add(
                         Intervention(
                             jsonIntervention["numero"].toString(),

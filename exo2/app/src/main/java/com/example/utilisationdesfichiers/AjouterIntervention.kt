@@ -26,7 +26,7 @@ import java.util.jar.Manifest
 class AjouterIntervention : AppCompatActivity() {
 
     lateinit var nomPlombier: Spinner
-    val nomList = arrayListOf<String>("Mohamed", "islam", "samir", "reda", "toufik")
+    val nomList = arrayListOf<String>("Fodil Nour", "Fedala Amira", "Lagrid Asmaa", "Retiel Mariem")
     lateinit var typeIntervention: Spinner
     val typeList = arrayListOf<String>("type1", "type2", "type3", "type4")
     lateinit var dateIntervention: Button
@@ -81,11 +81,9 @@ class AjouterIntervention : AppCompatActivity() {
             try {
                 val json = JSONArray(readFile("file" , this))
                 var i = json.length() - 1
-
+                if(intent.extras?.getString("mod")=="ajout"){
                 while (i >= 0) {
-
                     val jsonIntervention = json.getJSONObject(i)
-
                     listIntervention.add(
                         Intervention(jsonIntervention["numero"].toString(),
                             jsonIntervention["date"].toString(),
@@ -93,7 +91,19 @@ class AjouterIntervention : AppCompatActivity() {
                             jsonIntervention["typeIntervention"].toString())
                     )
                     i--
-                }
+                }}
+                else{
+                    while (i >= 0) {
+                        val jsonIntervention = json.getJSONObject(i)
+                        if(i!=intent.extras.getInt("pos")){
+                        listIntervention.add(
+                            Intervention(jsonIntervention["numero"].toString(),
+                                jsonIntervention["date"].toString(),
+                                jsonIntervention["nomPlombier"].toString(),
+                                jsonIntervention["typeIntervention"].toString())
+                        )}
+                        i--
+                    }}
             }catch (e : NullPointerException)
             {
                 e.printStackTrace()
@@ -112,7 +122,7 @@ class AjouterIntervention : AppCompatActivity() {
             val file = File.createTempFile("data", ".json")
             var jsonString: String = gson.toJson(listIntervention)
             writeFile(jsonString , "file" , this)
-            Toast.makeText(this , "Element ajouté" , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this , "file saved" , Toast.LENGTH_SHORT).show()
             startActivity(Intent(this , MainActivity::class.java))
 
         }

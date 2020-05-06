@@ -1,9 +1,11 @@
 package com.example.utilisationdesfichiers
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.intervention_row.view.*
@@ -43,6 +45,26 @@ class InterventionAdapter(
             if (nContext != null) {
                 writeFile(jsonString , "file" , nContext)
             }
+
+        }
+        holder.itemView.edit.setOnClickListener{
+
+            //startActivity(Intent(this.nContext , AjouterIntervention::class.java))
+
+            val intent = Intent(this.nContext, AjouterIntervention::class.java)
+            intent.putExtra("mod","edit")
+            intent.putExtra("pos",position)
+            nContext?.startActivity(intent)
+
+            /*this.interventionFeed.remove(interventionFeed[position])
+            val gson = Gson()
+            val jsonString: String = gson.toJson(interventionFeed)
+            if (nContext != null) {
+                writeFile(jsonString , "file" , nContext)
+            }
+            holder.itemView.visibility = View.GONE
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position,interventionFeed.size)*/
 
         }
     }

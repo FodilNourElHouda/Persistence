@@ -126,7 +126,7 @@ class gestionInterv : AppCompatActivity() {
         }
 
         val NomP= arrayOf("Djellal","Ahmim","Mazrou","fodil","fedala")
-        val Type_Interv= arrayOf("Nurse","Menage","Baby-setting","Garde malade","transport de personne")
+        val Type_Interv= arrayOf("type1","type2","type3")
         val adapterSpinner_N = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_item, NomP

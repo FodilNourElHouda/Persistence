@@ -36,6 +36,27 @@ fun readFile(fileName: String , context: Context): String? {
     } else
         return ""
 }
+fun writeFile(data: String, fileName: String , context: Context) {
+    if (isExternalStorageWritable()) {
+        val textFile = File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "$fileName.json")
+        textFile.writeText("")
+        context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)?.mkdir()
+
+        try {
+            val fos = FileOutputStream(textFile)
+            fos.write(data.toByteArray())
+            fos.close()
+            Toast.makeText(context, "file saved", Toast.LENGTH_LONG).show()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(context, "Exception", Toast.LENGTH_LONG).show()
+        }
+    } else {
+        Toast.makeText(context, "Cannot write on External storage", Toast.LENGTH_LONG).show()
+    }
+
+    println(data)
+}
 
  fun isExternalStorageReadable(): Boolean {
     return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState() ||
@@ -65,24 +86,3 @@ fun readFile(fileName: String , context: Context): String? {
     }
 }
 
- fun writeFile(data: String, fileName: String , context: Context) {
-    if (isExternalStorageWritable()) {
-        val textFile = File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "$fileName.json")
-        textFile.writeText("")
-
-        context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)?.mkdir()
-        try {
-            val fos = FileOutputStream(textFile)
-            fos.write(data.toByteArray())
-            fos.close()
-            Toast.makeText(context, "file saved", Toast.LENGTH_LONG).show()
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Toast.makeText(context, "Exception", Toast.LENGTH_LONG).show()
-        }
-    } else {
-        Toast.makeText(context, "Cannot write on External storage", Toast.LENGTH_LONG).show()
-    }
-
-    println(data)
-}
